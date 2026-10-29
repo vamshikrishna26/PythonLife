@@ -1,0 +1,1912 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>PythonLife Telugu - pythonlife</title>
+    <meta
+      name="description"
+      content="At low prices and with good quality, we provide Python, DevOps, and Data Science online courses!"
+    />
+    <meta
+      name="keywords"
+      content="pythonlife, python course in telugu, devops telugu, data science telugu, online python programming course in telugu"
+    />
+    <meta name="author" content="Kiran Sagar" />
+    <meta name="theme-color" content="#000000" />
+    <script>
+      document.documentElement.classList.add("js");
+    </script>
+    <link rel="canonical" href="https://pythonlife.in" />
+    <meta property="og:title" content="PythonLife Telugu - pythonlife" />
+    <meta
+      property="og:description"
+      content="PythonLife Offers At low prices and with good quality, we provide Python, DevOps, and Data Science online courses!"
+    />
+    <meta
+      property="og:image"
+      content="https://pythonlife.in/images/pythonlogo.png"
+    />
+    <meta property="og:url" content="https://pythonlife.in" />
+    <meta property="og:site_name" content="pythonlife telugu" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Mulish:wght@400;600;700&family=Noto+Sans+Telugu:wght@500;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #000;
+        --line: rgba(255, 255, 255, 0.12);
+        --text: #fff;
+        --muted: #b4b4b4;
+        --accent: #ff6600;
+        --accent-2: #ff8533;
+        --glass: rgba(255, 255, 255, 0.06);
+        --glass-b: rgba(255, 255, 255, 0.16);
+        --head:
+          "Bricolage Grotesque", "Noto Sans Telugu", system-ui, sans-serif;
+        --body: "Mulish", "Noto Sans Telugu", system-ui, sans-serif;
+      }
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+        background: var(--bg);
+      }
+      body {
+        margin: 0;
+        color: var(--text);
+        font-family: var(--body);
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+      }
+      img {
+        max-width: 100%;
+        display: block;
+      }
+      a {
+        color: inherit;
+      }
+      :focus-visible {
+        outline: 3px solid var(--accent);
+        outline-offset: 3px;
+        border-radius: 6px;
+      }
+      .wrap {
+        width: min(1120px, 100% - 2rem);
+        margin-inline: auto;
+      }
+
+      /* animated particle backdrop (drawn on a canvas by the script at the bottom) */
+      .bg-fx {
+        position: fixed;
+        inset: 0;
+        z-index: -2;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+      }
+
+      /* glowing backdrop that the glass sits on */
+      .blobs {
+        position: fixed;
+        inset: 0;
+        z-index: -1;
+        overflow: hidden;
+        pointer-events: none;
+      }
+      .blobs i {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(90px);
+        translate: calc(var(--px, 0) * var(--m) * 1px)
+          calc(var(--py, 0) * var(--m) * 1px);
+        transition: translate 0.7s ease-out;
+        animation: drift 20s ease-in-out infinite alternate;
+      }
+      .blobs i:nth-child(1) {
+        --m: 60;
+        width: 46vmax;
+        height: 46vmax;
+        left: -14vmax;
+        top: -16vmax;
+        background: #ff6600;
+        opacity: 0.16;
+      }
+      .blobs i:nth-child(2) {
+        --m: -40;
+        width: 34vmax;
+        height: 34vmax;
+        right: -10vmax;
+        top: 28vh;
+        background: #ff9a3c;
+        opacity: 0.08;
+        animation-delay: -6s;
+      }
+      .blobs i:nth-child(3) {
+        --m: 30;
+        width: 40vmax;
+        height: 40vmax;
+        left: 12vw;
+        bottom: -22vmax;
+        background: #c2410c;
+        opacity: 0.11;
+        animation-delay: -12s;
+      }
+      @keyframes drift {
+        to {
+          transform: translate3d(4vmax, 3vmax, 0) scale(1.12);
+        }
+      }
+
+      /* glass surface + pointer spotlight */
+      .glass {
+        background: var(--glass);
+        border: 1px solid var(--glass-b);
+        -webkit-backdrop-filter: blur(18px) saturate(150%);
+        backdrop-filter: blur(18px) saturate(150%);
+        box-shadow:
+          inset 0 1px 0 rgba(255, 255, 255, 0.2),
+          0 24px 50px -28px rgba(0, 0, 0, 0.8);
+      }
+      @supports not (
+        (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))
+      ) {
+        .glass {
+          background: rgba(30, 30, 30, 0.88);
+        }
+      }
+      .spot {
+        position: relative;
+        overflow: hidden;
+      }
+      .spot::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(
+          380px circle at var(--mx, 50%) var(--my, 50%),
+          rgba(255, 102, 0, 0.28),
+          transparent 60%
+        );
+        opacity: 0;
+        transition: opacity 0.3s;
+        pointer-events: none;
+      }
+      .spot:hover::before {
+        opacity: 1;
+      }
+      .spot > * {
+        position: relative;
+        z-index: 1;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        padding: 0.8rem 1.4rem;
+        border-radius: 999px;
+        font-weight: 800;
+        font-size: 0.95rem;
+        text-decoration: none;
+        border: 1px solid transparent;
+        cursor: pointer;
+        transition:
+          background-color 0.2s,
+          color 0.2s,
+          border-color 0.2s,
+          box-shadow 0.2s;
+      }
+      .btn-sun,
+      .btn-ink {
+        background: var(--accent);
+        color: #000;
+        box-shadow: 0 8px 24px -10px rgba(255, 102, 0, 0.8);
+      }
+      .btn-sun:hover,
+      .btn-ink:hover {
+        background: var(--accent-2);
+        box-shadow: 0 10px 30px -8px rgba(255, 102, 0, 0.95);
+      }
+      .btn-line {
+        background: var(--glass);
+        border-color: var(--glass-b);
+        color: #fff;
+        -webkit-backdrop-filter: blur(12px);
+        backdrop-filter: blur(12px);
+      }
+      .btn-line:hover {
+        border-color: var(--accent);
+        background: rgba(255, 102, 0, 0.16);
+      }
+
+      /* header */
+      .top {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        background: rgba(10, 10, 10, 0.4);
+        -webkit-backdrop-filter: blur(18px) saturate(150%);
+        backdrop-filter: blur(18px) saturate(150%);
+        border-bottom: 1px solid var(--glass-b);
+        transition: background-color 0.3s;
+      }
+      .top.scrolled {
+        background: rgba(10, 10, 10, 0.72);
+      }
+      .top .wrap {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        min-height: 68px;
+      }
+      .logo img {
+        height: 38px;
+        width: auto;
+      }
+      .nav {
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+        margin-left: auto;
+      }
+      .nav a,
+      .nav summary {
+        padding: 0.5rem 0.8rem;
+        border-radius: 10px;
+        font-weight: 700;
+        font-size: 0.92rem;
+        text-decoration: none;
+        cursor: pointer;
+        list-style: none;
+      }
+      .nav summary::-webkit-details-marker {
+        display: none;
+      }
+      .nav a:hover,
+      .nav summary:hover {
+        background: rgba(255, 255, 255, 0.09);
+        color: var(--accent-2);
+      }
+      .nav details {
+        position: relative;
+      }
+      .nav summary::after {
+        content: "";
+        display: inline-block;
+        width: 0.4em;
+        height: 0.4em;
+        margin-left: 0.45em;
+        border: solid currentColor;
+        border-width: 0 2px 2px 0;
+        transform: translateY(-0.15em) rotate(45deg);
+      }
+      .menu {
+        position: absolute;
+        top: calc(100% + 8px);
+        left: 0;
+        min-width: 300px;
+        padding: 0.5rem;
+        background: rgba(22, 22, 22, 0.86);
+        border: 1px solid var(--glass-b);
+        border-radius: 16px;
+        box-shadow:
+          inset 0 1px 0 rgba(255, 255, 255, 0.18),
+          0 24px 50px -20px rgba(255, 102, 0, 0.35);
+      }
+      .menu a {
+        display: block;
+        font-weight: 600;
+      }
+      .nav .nav-cta {
+        margin-left: 0.5rem;
+        color: #000;
+      }
+      .nav .nav-cta:hover {
+        background: var(--accent-2);
+        color: #000;
+      }
+      .burger {
+        display: none;
+        margin-left: auto;
+        width: 44px;
+        height: 44px;
+        border: 1px solid var(--glass-b);
+        border-radius: 12px;
+        background: var(--glass);
+        cursor: pointer;
+      }
+      .burger span,
+      .burger span::before,
+      .burger span::after {
+        display: block;
+        width: 18px;
+        height: 2px;
+        background: #fff;
+        margin: auto;
+        position: relative;
+      }
+      .burger span::before,
+      .burger span::after {
+        content: "";
+        position: absolute;
+        left: 0;
+      }
+      .burger span::before {
+        top: -6px;
+      }
+      .burger span::after {
+        top: 6px;
+      }
+
+      /* hero */
+      .hero .wrap {
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 3rem;
+        align-items: center;
+        padding-block: 4.5rem;
+      }
+      .hero h1 {
+        margin: 0;
+        font-family: var(--head);
+        font-weight: 800;
+        font-size: clamp(2rem, 4.4vw, 3.2rem);
+        line-height: 1.1;
+        letter-spacing: -0.02em;
+      }
+      .hero h1 b {
+        display: block;
+        font-size: 1.65em;
+        line-height: 1.25;
+        font-weight: 800;
+        letter-spacing: 0;
+      }
+      .hero p {
+        max-width: 34rem;
+        margin: 1.25rem 0 2rem;
+        color: var(--muted);
+        font-size: 1.05rem;
+      }
+      .cta-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+      }
+      .hero .since {
+        margin-top: 1.75rem;
+        color: #8a8a8a;
+        font-size: 0.9rem;
+      }
+      .code {
+        border-radius: 20px;
+        overflow: hidden;
+        transition: transform 0.25s ease-out;
+        will-change: transform;
+      }
+      .code-bar {
+        display: flex;
+        gap: 0.4rem;
+        align-items: center;
+        padding: 0.7rem 1rem;
+        background: rgba(255, 255, 255, 0.05);
+        border-bottom: 1px solid var(--line);
+        color: var(--muted);
+        font-size: 0.8rem;
+      }
+      .code-bar i {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.25);
+      }
+      .code-bar span {
+        margin-left: 0.5rem;
+      }
+      .run {
+        margin-left: auto;
+        display: inline-flex;
+        align-items: center;
+        padding: 0.3rem 0.85rem;
+        border: 0;
+        border-radius: 999px;
+        background: var(--accent);
+        color: #000;
+        font: 800 0.78rem var(--body);
+        cursor: pointer;
+        transition: background-color 0.2s;
+      }
+      .run::before {
+        content: "";
+        border-left: 7px solid #000;
+        border-block: 5px solid transparent;
+        margin-right: 0.4rem;
+      }
+      .run:hover:not(:disabled) {
+        background: var(--accent-2);
+      }
+      .run:disabled {
+        opacity: 0.6;
+        cursor: default;
+      }
+      .code pre {
+        margin: 0;
+        padding: 1.25rem 1.25rem 1rem;
+        font:
+          500 0.95rem/1.8 ui-monospace,
+          SFMono-Regular,
+          Menlo,
+          Consolas,
+          "Noto Sans Telugu",
+          monospace;
+        color: #ececec;
+        overflow-x: auto;
+      }
+      .k {
+        color: var(--accent-2);
+      }
+      .s {
+        color: #ffd9b8;
+      }
+      .c {
+        color: #7d7d7d;
+      }
+      .out {
+        padding: 0.9rem 1.25rem 1.25rem;
+        border-top: 1px dashed var(--line);
+        font-family: var(--head);
+        font-weight: 600;
+        font-size: 1.15rem;
+        min-height: 9.5rem;
+      }
+      .out small {
+        display: block;
+        margin-bottom: 0.3rem;
+        color: #7d7d7d;
+        font: 600 0.75rem var(--body);
+      }
+      .hint {
+        color: #7d7d7d;
+        font: 600 0.92rem var(--body);
+      }
+      .line {
+        animation: in 0.35s ease both;
+      }
+      @keyframes in {
+        from {
+          opacity: 0;
+          translate: 0 6px;
+        }
+      }
+
+      /* sections */
+      section {
+        padding-block: 4.5rem;
+      }
+      .sec-head {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: end;
+        justify-content: space-between;
+        gap: 1rem;
+        margin-bottom: 2rem;
+      }
+      h2 {
+        margin: 0;
+        font-family: var(--head);
+        font-weight: 800;
+        font-size: clamp(1.6rem, 3vw, 2.2rem);
+        letter-spacing: -0.015em;
+        line-height: 1.15;
+      }
+      .sec-head-c {
+        justify-content: center;
+        text-align: center;
+      }
+      .sec-head-c h2::after {
+        content: "";
+        display: block;
+        width: 56px;
+        height: 3px;
+        margin: 0.7rem auto 0;
+        border-radius: 3px;
+        background: var(--accent);
+      }
+      .sec-head-2 {
+        margin-top: 3.5rem;
+      }
+      .cards {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+        gap: 1.25rem;
+      }
+      .ccard {
+        display: flex;
+        flex-direction: column;
+        padding: 0.9rem 0.9rem 1.25rem;
+        border-radius: 22px;
+        text-align: center;
+        transition:
+          transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1),
+          border-color 0.25s,
+          box-shadow 0.25s;
+      }
+      .ccard:hover {
+        transform: translateY(-6px);
+        border-color: rgba(255, 102, 0, 0.6);
+        box-shadow:
+          inset 0 1px 0 rgba(255, 255, 255, 0.2),
+          0 26px 50px -24px rgba(255, 102, 0, 0.55);
+      }
+      .cthumb {
+        position: relative;
+        aspect-ratio: 16/10;
+        margin-bottom: 1.1rem;
+        border-radius: 16px;
+        overflow: hidden;
+        isolation: isolate;
+        background: #fff;
+        box-shadow:
+          inset 0 0 0 1px rgba(0, 0, 0, 0.06),
+          0 10px 24px -14px rgba(0, 0, 0, 0.7);
+      }
+      .cthumb::before {
+        content: "";
+        position: absolute;
+        inset: -20px;
+        z-index: -1;
+        background: var(--img) center/cover no-repeat;
+        filter: blur(18px) saturate(1.15);
+        opacity: 0.55;
+      }
+      .cthumb img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        object-position: center;
+        padding: 4px;
+        transition: transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1);
+      }
+      .ccard:hover .cthumb img {
+        transform: scale(1.05);
+      }
+      .ccard h3 {
+        margin: 0 0 0.6rem;
+        padding-inline: 0.35rem;
+        min-height: 2.6em;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: var(--head);
+        font-weight: 600;
+        font-size: 1.08rem;
+        line-height: 1.3;
+      }
+      .ctype {
+        margin: 0;
+        color: var(--muted);
+        font-size: 0.88rem;
+      }
+      .ctype b {
+        color: var(--accent-2);
+        font-weight: 800;
+      }
+      .seats {
+        margin: 0.15rem 0 1.1rem;
+        font-weight: 700;
+        color: var(--muted);
+        font-size: 0.85rem;
+      }
+      .ccard .btn {
+        margin-top: auto;
+        align-self: center;
+        padding: 0.6rem 1.5rem;
+        font-size: 0.9rem;
+      }
+
+      .work {
+        border-block: 1px solid var(--line);
+      }
+      .logos-panel {
+        padding: 1rem;
+        border-radius: 22px;
+      }
+      .logos {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+        gap: 0.75rem;
+      }
+      .logos img {
+        width: 100%;
+        aspect-ratio: 3/2;
+        object-fit: contain;
+        padding: 0.6rem;
+        background: #fff;
+        border-radius: 14px;
+        transition: transform 0.25s;
+      }
+      .logos img:hover {
+        transform: scale(1.05);
+      }
+
+      .say {
+        border-radius: 26px;
+        padding: 3rem;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .say p {
+        margin: 0.5rem 0 0;
+        color: var(--muted);
+        max-width: 32rem;
+      }
+
+      /* footer */
+      footer {
+        position: relative;
+        background: linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.03),
+          rgba(255, 102, 0, 0.05)
+        );
+        -webkit-backdrop-filter: blur(18px);
+        backdrop-filter: blur(18px);
+        border-top: 1px solid var(--glass-b);
+        color: var(--muted);
+        padding: 4rem 0 1.5rem;
+        font-size: 0.93rem;
+      }
+      footer::before {
+        content: "";
+        position: absolute;
+        top: -1px;
+        left: 50%;
+        translate: -50% 0;
+        width: min(520px, 70%);
+        height: 2px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          var(--accent),
+          transparent
+        );
+      }
+      .foot {
+        display: grid;
+        grid-template-columns: 1.5fr 1fr 1fr 0.9fr;
+        gap: 2.5rem;
+      }
+      .foot img {
+        height: 40px;
+        width: auto;
+        margin-bottom: 1rem;
+      }
+      .foot p {
+        margin: 0;
+        max-width: 34ch;
+        line-height: 1.7;
+      }
+      .foot h4 {
+        position: relative;
+        margin: 0 0 1.1rem;
+        padding-bottom: 0.6rem;
+        color: #fff;
+        font-family: var(--head);
+        font-size: 1rem;
+        letter-spacing: 0.01em;
+      }
+      .foot h4::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 28px;
+        height: 2px;
+        border-radius: 2px;
+        background: var(--accent);
+      }
+      .foot ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: grid;
+        gap: 0.6rem;
+      }
+      .foot a {
+        text-decoration: none;
+        transition:
+          color 0.2s,
+          translate 0.2s;
+      }
+      .foot ul a:hover {
+        color: var(--accent-2);
+        translate: 3px 0;
+      }
+      .social {
+        display: flex;
+        gap: 0.6rem;
+        margin-top: 1.4rem;
+      }
+      .foot .social a {
+        display: grid;
+        place-items: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 12px;
+        background: var(--glass);
+        border: 1px solid var(--glass-b);
+        color: #fff;
+        transition:
+          background-color 0.2s,
+          border-color 0.2s,
+          color 0.2s,
+          transform 0.2s;
+      }
+      .foot .social a:hover {
+        background: var(--accent);
+        border-color: var(--accent);
+        color: #000;
+        transform: translateY(-3px);
+      }
+      .social svg {
+        width: 19px;
+        height: 19px;
+        fill: currentColor;
+      }
+      .legal {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 0.75rem 1.5rem;
+        margin-top: 3rem;
+        padding-top: 1.4rem;
+        border-top: 1px solid var(--line);
+        color: #8a8a8a;
+        font-size: 0.86rem;
+      }
+      .legal nav {
+        display: flex;
+        gap: 1.25rem;
+      }
+      .legal a {
+        text-decoration: none;
+      }
+      .legal a:hover {
+        color: var(--accent-2);
+      }
+      .wa {
+        position: fixed;
+        right: 1rem;
+        bottom: 1rem;
+        z-index: 30;
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        box-shadow: 0 10px 24px -8px rgba(0, 0, 0, 0.7);
+        transition: transform 0.2s;
+      }
+      .wa:hover {
+        transform: scale(1.08);
+      }
+      .wa img {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+      }
+
+      /* ===== animations ===== */
+      @keyframes rise {
+        from {
+          opacity: 0;
+          translate: 0 28px;
+        }
+      }
+      @keyframes float {
+        from {
+          translate: 0 0;
+        }
+        to {
+          translate: 0 -10px;
+        }
+      }
+      @keyframes shimmer {
+        from {
+          background-position: 120% 0;
+        }
+        to {
+          background-position: -120% 0;
+        }
+      }
+      @keyframes blink {
+        50% {
+          opacity: 0;
+        }
+      }
+      @keyframes marquee {
+        to {
+          transform: translateX(-50%);
+        }
+      }
+      @keyframes ring {
+        from {
+          opacity: 0.8;
+          scale: 1;
+        }
+        to {
+          opacity: 0;
+          scale: 1.75;
+        }
+      }
+
+      /* hero entrance, one orchestrated sequence */
+      .hero .wrap > div:first-child > * {
+        animation: rise 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+      }
+      .hero .wrap > div:first-child > :nth-child(1) {
+        animation-delay: 0.05s;
+      }
+      .hero .wrap > div:first-child > :nth-child(2) {
+        animation-delay: 0.2s;
+      }
+      .hero .wrap > div:first-child > :nth-child(3) {
+        animation-delay: 0.35s;
+      }
+      .hero .wrap > div:first-child > :nth-child(4) {
+        animation-delay: 0.5s;
+      }
+      .hero .code {
+        animation:
+          rise 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) 0.3s both,
+          float 7s ease-in-out 1.3s infinite alternate;
+      }
+
+      /* light sweep across the Telugu word */
+      @supports ((-webkit-background-clip: text) or (background-clip: text)) {
+        .hero h1 b {
+          background: linear-gradient(
+              100deg,
+              #fff 0%,
+              #fff 38%,
+              #ffb27a 50%,
+              #fff 62%,
+              #fff 100%
+            )
+            120% 0/250% 100%;
+          -webkit-background-clip: text;
+          background-clip: text;
+          -webkit-text-fill-color: transparent;
+          color: transparent;
+          animation: shimmer 5s ease-in-out 1s infinite;
+        }
+      }
+      .cur {
+        display: inline-block;
+        width: 0.55ch;
+        height: 1.1em;
+        background: var(--accent);
+        vertical-align: -0.18em;
+        animation: blink 1s steps(1) infinite;
+      }
+
+      /* scroll reveal (staggered via --d) */
+      .js .reveal {
+        opacity: 0;
+        translate: 0 26px;
+        transition:
+          opacity 0.7s ease var(--d, 0s),
+          translate 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) var(--d, 0s);
+      }
+      .js .ccard.reveal {
+        transition:
+          opacity 0.7s ease var(--d, 0s),
+          translate 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) var(--d, 0s),
+          transform 0.25s,
+          border-color 0.25s;
+      }
+      .js .reveal.in {
+        opacity: 1;
+        translate: 0 0;
+      }
+
+      /* scrolling company logos, pauses on hover */
+      .js .logos-panel {
+        padding-inline: 0;
+      }
+      .js .logos {
+        display: flex;
+        gap: 0;
+        width: max-content;
+        animation: marquee 45s linear infinite;
+      }
+      .js .logos img {
+        width: 150px;
+        flex: none;
+        margin-right: 0.75rem;
+      }
+      .js .logos-panel:hover .logos {
+        animation-play-state: paused;
+      }
+      .js .logos-panel {
+        -webkit-mask-image: linear-gradient(
+          90deg,
+          transparent,
+          #000 8%,
+          #000 92%,
+          transparent
+        );
+        mask-image: linear-gradient(
+          90deg,
+          transparent,
+          #000 8%,
+          #000 92%,
+          transparent
+        );
+      }
+
+      /* button light sweep + WhatsApp pulse */
+      .btn-sun,
+      .btn-ink {
+        position: relative;
+        overflow: hidden;
+      }
+      .btn-sun::after,
+      .btn-ink::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        translate: -120% 0;
+        background: linear-gradient(
+          100deg,
+          transparent 30%,
+          rgba(255, 255, 255, 0.5) 50%,
+          transparent 70%
+        );
+        transition: translate 0.6s;
+        pointer-events: none;
+      }
+      .btn-sun:hover::after,
+      .btn-ink:hover::after {
+        translate: 120% 0;
+      }
+      .wa::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: 50%;
+        border: 2px solid rgba(37, 211, 102, 0.8);
+        animation: ring 2.4s ease-out infinite;
+        pointer-events: none;
+      }
+
+      @media (max-width: 860px) {
+        .burger {
+          display: block;
+        }
+        .nav {
+          display: none;
+          position: absolute;
+          top: 68px;
+          left: 0;
+          right: 0;
+          flex-direction: column;
+          align-items: stretch;
+          gap: 0;
+          padding: 0.75rem 1rem 1rem;
+          background: rgba(14, 14, 14, 0.92);
+          border-bottom: 1px solid var(--glass-b);
+        }
+        .nav.open {
+          display: flex;
+        }
+        .menu {
+          position: static;
+          box-shadow: none;
+          border: 0;
+          background: transparent;
+          min-width: 0;
+          padding: 0 0 0 0.75rem;
+        }
+        .nav .nav-cta {
+          margin: 0.5rem 0 0;
+        }
+        .hero .wrap {
+          grid-template-columns: 1fr;
+          padding-block: 3rem;
+        }
+        .cards {
+          grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+          gap: 1rem;
+        }
+        .foot {
+          grid-template-columns: 1fr 1fr;
+          gap: 2rem;
+        }
+        .foot > div:first-child {
+          grid-column: 1/-1;
+        }
+        .say {
+          padding: 2rem 1.5rem;
+        }
+        section {
+          padding-block: 3.25rem;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+        * {
+          transition: none !important;
+        }
+        *,
+        *::before,
+        *::after {
+          animation: none !important;
+        }
+        .js .reveal {
+          opacity: 1;
+          translate: none;
+        }
+        .js .logos {
+          flex-wrap: wrap;
+          width: auto;
+        }
+        .js .logos-panel {
+          -webkit-mask-image: none;
+          mask-image: none;
+          padding-inline: 1rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <canvas class="bg-fx" id="bgfx" aria-hidden="true"></canvas>
+    <div class="blobs" aria-hidden="true"><i></i><i></i><i></i></div>
+    <header class="top" id="top">
+      <div class="wrap">
+        <a class="logo" href="https://pythonlife.in/index.html"
+          ><img src="https://pythonlife.in/images/logo.png" alt="PythonLife"
+        /></a>
+        <button
+          class="burger"
+          id="burger"
+          aria-label="Open menu"
+          aria-expanded="false"
+          aria-controls="nav"
+        >
+          <span></span>
+        </button>
+        <nav class="nav" id="nav" aria-label="Main">
+          <a href="https://pythonlife.in/index.html">Home</a>
+          <details>
+            <summary>Live courses</summary>
+            <div class="menu">
+              <a href="https://pythonlife.in/python-live-course-in-telugu.html"
+                >FullStack Python Development with AI</a
+              >
+              <a href="https://pythonlife.in/Genai-course-in-telugu.html"
+                >Generative AI &amp; Agentic AI</a
+              >
+              <a href="https://pythonlife.in/data-science.html"
+                >FullStack Data Science with GenAI</a
+              >
+              <a href="https://pythonlife.in/oracle-live.html"
+                >Beginner to Advanced SQL &amp; PL/SQL</a
+              >
+              <a
+                href="https://pythonlife.in/fullstack-Genai-course-in-telugu.html"
+                >FullStack AI with GenAI &amp; Agentic AI</a
+              >
+              <a href="https://pythonlife.in/devops-with-aws.html"
+                >DevOps &amp; DevSecOps with MultiCloud &amp; AI</a
+              >
+              <a href="https://pythonlife.in/Java-Programming-Telugu.html"
+                >Basic to Advanced Java &amp; AI</a
+              >
+            </div>
+          </details>
+          <details>
+            <summary>Recorded courses</summary>
+            <div class="menu">
+              <a href="https://pythonlife.in/python-course-in-telugu.html"
+                >FullStack Python Programming</a
+              >
+              <a href="https://pythonlife.in/oracle.html"
+                >Basic to Advanced SQL &amp; PL/SQL</a
+              >
+              <a href="https://pythonlife.in/devops-with-gcp.html"
+                >DevOps &amp; DevSecOps with AWS</a
+              >
+              <a href="https://pythonlife.in/Java-Programming-Telugu-Rec.html"
+                >Basic to Advanced Java Programming</a
+              >
+            </div>
+          </details>
+          <a href="https://pythonlife.in/reviews.html">Reviews</a>
+          <a href="https://pythonlife.in/contact.html">Contact us</a>
+          <a class="btn btn-ink nav-cta" id="login" href="#">Login</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <div class="hero">
+        <div class="wrap">
+          <div>
+            <h1>Learn programming in <b>తెలుగు</b></h1>
+            <p>
+              We believe that learning in your own language brings out the best
+              in everyone and makes you a master of the subject.
+            </p>
+            <div class="cta-row">
+              <a class="btn btn-sun" href="#courses">Explore programs</a>
+              <a
+                class="btn btn-line"
+                href="https://youtube.com/c/PythonLifetelugu"
+                >Watch on YouTube</a
+              >
+            </div>
+            <p class="since">
+              Teaching Python, Data Science, AI, DevOps, SQL and Java in Telugu
+              since 2020.
+            </p>
+          </div>
+          <div class="code glass" id="code">
+            <div class="code-bar">
+              <i></i><i></i><i></i><span>pythonlife.py</span
+              ><button class="run" id="run" type="button">Run</button>
+            </div>
+            <pre><span class="c"># your first program, in your language</span>
+<span class="k">for</span> topic <span class="k">in</span> [<span class="s">"Python"</span>, <span class="s">"AI"</span>, <span class="s">"DevOps"</span>]:
+    <span class="k">print</span>(<span class="s">f"నమస్కారం, {topic} నేర్చుకుందాం!"</span>)
+<span class="cur"></span></pre>
+            <div class="out" aria-live="polite">
+              <small>Output</small>
+              <div id="outLines" class="hint">
+                Press Run to see it in Telugu.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <section id="courses">
+        <div class="wrap">
+          <div class="sec-head sec-head-c"><h2>Live Courses in Telugu</h2></div>
+          <ul class="cards" aria-label="Live courses in Telugu">
+            <li class="ccard glass spot">
+              <div
+                class="cthumb"
+                style="
+                  --img: url(&quot;https://pythonlife.in/images/pythonlogo.png&quot;);
+                "
+              >
+                <img
+                  src="https://pythonlife.in/images/pythonlogo.png"
+                  alt="FullStack Python Development with AI"
+                  loading="lazy"
+                />
+              </div>
+              <h3>FullStack Python Development with AI</h3>
+              <p class="ctype">Course Type: <b>Live</b></p>
+              <p class="seats">Limited Seats Only</p>
+              <a
+                class="btn btn-ink"
+                href="https://pythonlife.in/python-live-course-in-telugu.html"
+                >Know more</a
+              >
+            </li>
+            <li class="ccard glass spot">
+              <div
+                class="cthumb"
+                style="
+                  --img: url(&quot;https://pythonlife.in/images/jai.png&quot;);
+                "
+              >
+                <img
+                  src="https://pythonlife.in/images/jai.png"
+                  alt="Basic to Advanced Java Programming with AI"
+                  loading="lazy"
+                />
+              </div>
+              <h3>Basic to Advanced Java Programming with AI</h3>
+              <p class="ctype">Course Type: <b>Live</b></p>
+              <p class="seats">Limited Seats Only</p>
+              <a
+                class="btn btn-ink"
+                href="https://pythonlife.in/Java-Programming-Telugu.html"
+                >Know more</a
+              >
+            </li>
+            <li class="ccard glass spot">
+              <div
+                class="cthumb"
+                style="
+                  --img: url(&quot;https://pythonlife.in/images/FS%20AI.png&quot;);
+                "
+              >
+                <img
+                  src="https://pythonlife.in/images/FS%20AI.png"
+                  alt="FullStack AI with Generative AI &amp; Agentic AI"
+                  loading="lazy"
+                />
+              </div>
+              <h3>FullStack AI with Generative AI &amp; Agentic AI</h3>
+              <p class="ctype">Course Type: <b>Live</b></p>
+              <p class="seats">Limited Seats Only</p>
+              <a
+                class="btn btn-ink"
+                href="https://pythonlife.in/fullstack-Genai-course-in-telugu.html"
+                >Know more</a
+              >
+            </li>
+            <li class="ccard glass spot">
+              <div
+                class="cthumb"
+                style="
+                  --img: url(&quot;https://pythonlife.in/images/devps%20logo%20in%20course.png&quot;);
+                "
+              >
+                <img
+                  src="https://pythonlife.in/images/devps%20logo%20in%20course.png"
+                  alt="DevOps &amp; DevSecOps with MultiCloud &amp; AI"
+                  loading="lazy"
+                />
+              </div>
+              <h3>DevOps &amp; DevSecOps with MultiCloud &amp; AI</h3>
+              <p class="ctype">Course Type: <b>Live</b></p>
+              <p class="seats">Limited Seats Only</p>
+              <a
+                class="btn btn-ink"
+                href="https://pythonlife.in/devops-with-aws.html"
+                >Know more</a
+              >
+            </li>
+          </ul>
+
+          <div class="sec-head sec-head-c sec-head-2">
+            <h2>Recorded Courses in Telugu</h2>
+          </div>
+          <ul class="cards" aria-label="Recorded courses in Telugu">
+            <li class="ccard glass spot">
+              <div
+                class="cthumb"
+                style="
+                  --img: url(&quot;https://pythonlife.in/images/pythonlogo.png&quot;);
+                "
+              >
+                <img
+                  src="https://pythonlife.in/images/pythonlogo.png"
+                  alt="FullStack Python with GenAI"
+                  loading="lazy"
+                />
+              </div>
+              <h3>FullStack Python with GenAI</h3>
+              <p class="ctype">Course Type: <b>Recorded</b></p>
+              <p class="seats">Limited Seats Only</p>
+              <a
+                class="btn btn-ink"
+                href="https://pythonlife.in/python-course-in-telugu.html"
+                >Know more</a
+              >
+            </li>
+            <li class="ccard glass spot">
+              <div
+                class="cthumb"
+                style="
+                  --img: url(&quot;https://pythonlife.in/images/java.png&quot;);
+                "
+              >
+                <img
+                  src="https://pythonlife.in/images/java.png"
+                  alt="Basic to Advanced Java Programming"
+                  loading="lazy"
+                />
+              </div>
+              <h3>Basic to Advanced Java Programming</h3>
+              <p class="ctype">Course Type: <b>Recorded</b></p>
+              <p class="seats">Limited Seats Only</p>
+              <a
+                class="btn btn-ink"
+                href="https://pythonlife.in/Java-Programming-Telugu-Rec.html"
+                >Know more</a
+              >
+            </li>
+            <li class="ccard glass spot">
+              <div
+                class="cthumb"
+                style="
+                  --img: url(&quot;https://pythonlife.in/images/sql.png&quot;);
+                "
+              >
+                <img
+                  src="https://pythonlife.in/images/sql.png"
+                  alt="Basic to Advanced SQL &amp; PL/SQL"
+                  loading="lazy"
+                />
+              </div>
+              <h3>Basic to Advanced SQL &amp; PL/SQL</h3>
+              <p class="ctype">Course Type: <b>Recorded</b></p>
+              <p class="seats">Limited Seats Only</p>
+              <a class="btn btn-ink" href="https://pythonlife.in/oracle.html"
+                >Know more</a
+              >
+            </li>
+            <li class="ccard glass spot">
+              <div
+                class="cthumb"
+                style="
+                  --img: url(&quot;https://pythonlife.in/images/devps%20logo%20in%20course.png&quot;);
+                "
+              >
+                <img
+                  src="https://pythonlife.in/images/devps%20logo%20in%20course.png"
+                  alt="DevOps &amp; SecOps with AWS &amp; AI"
+                  loading="lazy"
+                />
+              </div>
+              <h3>DevOps &amp; SecOps with AWS &amp; AI</h3>
+              <p class="ctype">Course Type: <b>Recorded</b></p>
+              <p class="seats">Limited Seats Only</p>
+              <a
+                class="btn btn-ink"
+                href="https://pythonlife.in/devops-with-gcp.html"
+                >Know more</a
+              >
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="work" aria-labelledby="work-h">
+        <div class="wrap">
+          <div class="sec-head"><h2 id="work-h">Our students work at</h2></div>
+          <div class="logos-panel glass spot">
+            <div class="logos">
+              <img
+                src="https://pythonlife.in/images/c1.jpg"
+                alt=""
+                loading="lazy"
+              /><img
+                src="https://pythonlife.in/images/c2.jpg"
+                alt=""
+                loading="lazy"
+              /><img
+                src="https://pythonlife.in/images/c3.jpg"
+                alt=""
+                loading="lazy"
+              /><img
+                src="https://pythonlife.in/images/c4.jpg"
+                alt=""
+                loading="lazy"
+              />
+              <img
+                src="https://pythonlife.in/images/c5.jpg"
+                alt=""
+                loading="lazy"
+              /><img
+                src="https://pythonlife.in/images/c6.jpg"
+                alt=""
+                loading="lazy"
+              /><img
+                src="https://pythonlife.in/images/c7.jpg"
+                alt=""
+                loading="lazy"
+              /><img
+                src="https://pythonlife.in/images/c8.jpg"
+                alt=""
+                loading="lazy"
+              />
+              <img
+                src="https://pythonlife.in/images/c9.jpg"
+                alt=""
+                loading="lazy"
+              /><img
+                src="https://pythonlife.in/images/c10.jpg"
+                alt=""
+                loading="lazy"
+              /><img
+                src="https://pythonlife.in/images/c11.jpg"
+                alt=""
+                loading="lazy"
+              /><img
+                src="https://pythonlife.in/images/c12.jpg"
+                alt=""
+                loading="lazy"
+              />
+              <img
+                src="https://pythonlife.in/images/c13.jpg"
+                alt=""
+                loading="lazy"
+              /><img
+                src="https://pythonlife.in/images/c14.jpg"
+                alt=""
+                loading="lazy"
+              /><img
+                src="https://pythonlife.in/images/c15.jpg"
+                alt=""
+                loading="lazy"
+              /><img
+                src="https://pythonlife.in/images/c16.jpg"
+                alt=""
+                loading="lazy"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="wrap">
+          <div class="say glass spot">
+            <div>
+              <h2>Our happy students</h2>
+              <p>
+                Read what students and working professionals say about learning
+                with PythonLife.
+              </p>
+            </div>
+            <a class="btn btn-sun" href="https://pythonlife.in/reviews.html"
+              >View all reviews</a
+            >
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="wrap">
+        <div class="foot">
+          <div>
+            <img src="https://pythonlife.in/images/logo.png" alt="PythonLife" />
+            <p>
+              A Telugu-first EdTech platform making technology learning simple,
+              practical and career-focused. Since 2020, hands-on training in
+              Python, Data Science, AI, DevOps, SQL and Java.
+            </p>
+            <div class="social">
+              <a
+                href="https://www.instagram.com/pythonlifetelugu/"
+                aria-label="Instagram"
+                target="_blank"
+                rel="noopener"
+                ><svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path
+                    d="M12 2.2c3.2 0 3.6 0 4.8.1 3.3.1 4.8 1.7 4.9 4.9.1 1.3.1 1.6.1 4.8s0 3.6-.1 4.8c-.1 3.2-1.7 4.8-4.9 4.9-1.3.1-1.6.1-4.8.1s-3.6 0-4.8-.1c-3.3-.1-4.8-1.7-4.9-4.9C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.8C2.4 3.9 4 2.4 7.2 2.3 8.4 2.2 8.8 2.2 12 2.2zm0 3.7a6.1 6.1 0 100 12.2 6.1 6.1 0 000-12.2zm0 10.1a4 4 0 110-8 4 4 0 010 8zm6.4-10.4a1.4 1.4 0 11-2.9 0 1.4 1.4 0 012.9 0z"
+                  /></svg
+              ></a>
+              <a
+                href="https://youtube.com/c/PythonLifetelugu"
+                aria-label="YouTube"
+                target="_blank"
+                rel="noopener"
+                ><svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path
+                    d="M23 7.2a3 3 0 00-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 001 7.2C.5 9.1.5 12 .5 12s0 2.9.5 4.8a3 3 0 002.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 002.1-2.1c.5-1.9.5-4.8.5-4.8s0-2.9-.5-4.8zM9.7 15.5v-7l6 3.5-6 3.5z"
+                  /></svg
+              ></a>
+              <a
+                href="https://www.linkedin.com/in/kiran-sagar-a00a761b2"
+                aria-label="LinkedIn"
+                target="_blank"
+                rel="noopener"
+                ><svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path
+                    d="M20.4 20.5h-3.6v-5.6c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9v5.7H9.3V9h3.4v1.6c.5-.9 1.6-1.8 3.4-1.8 3.6 0 4.3 2.4 4.3 5.5v6.2zM5.3 7.4a2.1 2.1 0 110-4.200 2.1 2.1 0 010 4.200zM7.1 20.5H3.6V9h3.5v11.5z"
+                  /></svg
+              ></a>
+              <a
+                href="https://t.me/python_life_telugu"
+                aria-label="Telegram"
+                target="_blank"
+                rel="noopener"
+                ><svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path
+                    d="M21.9 4.1L2.7 11.5c-1.300.5-1.300 1.300-.2 1.600l4.900 1.500 1.900 5.800c.2.600.4.800.9.800.4 0 .6-.2.900-.4l2.300-2.200 4.800 3.500c.9.500 1.500.2 1.700-.8l3.200-15.100c.3-1.300-.5-1.900-1.200-1.600zM8.700 13.800l9.300-5.800c.4-.3.800-.1.500.2l-7.700 6.900-.3 3.200-1.800-4.500z"
+                  /></svg
+              ></a>
+            </div>
+          </div>
+          <div>
+            <h4>Live courses</h4>
+            <ul>
+              <li>
+                <a
+                  href="https://pythonlife.in/python-live-course-in-telugu.html"
+                  >FullStack Python Development with AI</a
+                >
+              </li>
+              <li>
+                <a href="https://pythonlife.in/Genai-course-in-telugu.html"
+                  >Generative AI &amp; Agentic AI</a
+                >
+              </li>
+              <li>
+                <a href="https://pythonlife.in/data-science.html"
+                  >FullStack Data Science with GenAI</a
+                >
+              </li>
+              <li>
+                <a href="https://pythonlife.in/oracle-live.html"
+                  >Beginner to Advanced SQL &amp; PL/SQL</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://pythonlife.in/fullstack-Genai-course-in-telugu.html"
+                  >FullStack AI with GenAI &amp; Agentic AI</a
+                >
+              </li>
+              <li>
+                <a href="https://pythonlife.in/devops-with-aws.html"
+                  >DevOps &amp; DevSecOps with AWS &amp; AI</a
+                >
+              </li>
+              <li>
+                <a href="https://pythonlife.in/Java-Programming-Telugu.html"
+                  >Basic to Advanced Java with AI</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h4>Recorded courses</h4>
+            <ul>
+              <li>
+                <a href="https://pythonlife.in/python-course-in-telugu.html"
+                  >FullStack Python Programming</a
+                >
+              </li>
+              <li>
+                <a href="https://pythonlife.in/Java-Programming-Telugu-Rec.html"
+                  >Basic to Advanced Java Programming</a
+                >
+              </li>
+              <li>
+                <a href="https://pythonlife.in/oracle.html"
+                  >Basic to Advanced SQL &amp; PL/SQL</a
+                >
+              </li>
+              <li>
+                <a href="https://pythonlife.in/devops-with-gcp.html"
+                  >DevOps &amp; DevSecOps with AWS</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h4>Quick links</h4>
+            <ul>
+              <li><a href="https://pythonlife.in/index.html">Home</a></li>
+              <li><a href="https://pythonlife.in/reviews.html">Reviews</a></li>
+              <li>
+                <a href="https://pythonlife.in/contact.html">Contact us</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="legal">
+          <span>Copyright © 2026 Python Life. All rights reserved.</span>
+          <nav aria-label="Legal">
+            <a href="https://pythonlife.in/privacy.html">Privacy</a
+            ><a href="https://pythonlife.in/terms-and-conditions.html"
+              >Terms and conditions</a
+            >
+          </nav>
+        </div>
+      </div>
+    </footer>
+
+    <a
+      class="wa"
+      href="https://wa.me/919154083255"
+      aria-label="Chat on WhatsApp"
+      ><img src="https://pythonlife.in/whatsapp.png" alt=""
+    /></a>
+
+    <script>
+      (function () {
+        var $ = function (id) {
+          return document.getElementById(id);
+        };
+        var reduce = window.matchMedia(
+          "(prefers-reduced-motion: reduce)",
+        ).matches;
+        var fine = window.matchMedia(
+          "(hover: hover) and (pointer: fine)",
+        ).matches;
+
+        // Mobile menu + dropdowns
+        var burger = $("burger"),
+          nav = $("nav");
+        burger.addEventListener("click", function () {
+          var open = nav.classList.toggle("open");
+          burger.setAttribute("aria-expanded", open);
+        });
+        var dds = nav.querySelectorAll("details");
+        dds.forEach(function (d) {
+          d.addEventListener("toggle", function () {
+            if (d.open)
+              dds.forEach(function (o) {
+                if (o !== d) o.open = false;
+              });
+          });
+        });
+        document.addEventListener("click", function (e) {
+          dds.forEach(function (d) {
+            if (!d.contains(e.target)) d.open = false;
+          });
+        });
+        document.addEventListener("keydown", function (e) {
+          if (e.key === "Escape")
+            dds.forEach(function (d) {
+              d.open = false;
+            });
+        });
+
+        // Header gets denser glass after scrolling
+        var top = $("top");
+        function onScroll() {
+          top.classList.toggle("scrolled", window.scrollY > 10);
+        }
+        onScroll();
+        window.addEventListener("scroll", onScroll, { passive: true });
+
+        // Orange spotlight that follows the pointer inside glass cards
+        document.querySelectorAll(".spot").forEach(function (el) {
+          el.addEventListener("pointermove", function (e) {
+            var r = el.getBoundingClientRect();
+            el.style.setProperty("--mx", e.clientX - r.left + "px");
+            el.style.setProperty("--my", e.clientY - r.top + "px");
+          });
+        });
+
+        // Backdrop glow drifts with the pointer; code window tilts toward it
+        var blobs = document.querySelector(".blobs"),
+          code = $("code");
+        if (!reduce && fine) {
+          window.addEventListener(
+            "pointermove",
+            function (e) {
+              blobs.style.setProperty(
+                "--px",
+                (e.clientX / window.innerWidth - 0.5) * 2,
+              );
+              blobs.style.setProperty(
+                "--py",
+                (e.clientY / window.innerHeight - 0.5) * 2,
+              );
+            },
+            { passive: true },
+          );
+          code.addEventListener("pointermove", function (e) {
+            var r = code.getBoundingClientRect();
+            var x = (e.clientX - r.left) / r.width - 0.5,
+              y = (e.clientY - r.top) / r.height - 0.5;
+            code.style.transform =
+              "perspective(900px) rotateX(" +
+              (-y * 7).toFixed(2) +
+              "deg) rotateY(" +
+              (x * 7).toFixed(2) +
+              "deg)";
+          });
+          code.addEventListener("pointerleave", function () {
+            code.style.transform = "";
+          });
+        }
+
+        // "Run" the Python sample: prints the Telugu lines one by one
+        var run = $("run"),
+          lines = $("outLines"),
+          topics = ["Python", "AI", "DevOps"],
+          timer;
+        run.addEventListener("click", function () {
+          clearTimeout(timer);
+          run.disabled = true;
+          lines.className = "";
+          lines.textContent = "";
+          var i = 0;
+          (function next() {
+            if (i >= topics.length) {
+              run.textContent = "Run again";
+              run.disabled = false;
+              return;
+            }
+            var d = document.createElement("div");
+            d.className = "line";
+            d.textContent =
+              "\u0C28\u0C2E\u0C38\u0C4D\u0C15\u0C3E\u0C30\u0C02, " +
+              topics[i++] +
+              " \u0C28\u0C47\u0C30\u0C4D\u0C1A\u0C41\u0C15\u0C41\u0C02\u0C26\u0C3E\u0C02!";
+            lines.appendChild(d);
+            timer = setTimeout(next, reduce ? 0 : 450);
+          })();
+        });
+        // Scroll reveal, staggered; cards stagger in
+        var rev = Array.prototype.slice.call(
+          document.querySelectorAll(
+            ".sec-head, .ccard, .logos-panel, .say, .foot > div",
+          ),
+        );
+        document.querySelectorAll(".cards").forEach(function (ul) {
+          ul.querySelectorAll(".ccard").forEach(function (row, i) {
+            row.style.setProperty("--d", i * 0.08 + "s");
+          });
+        });
+        document.querySelectorAll(".foot > div").forEach(function (el, i) {
+          el.style.setProperty("--d", i * 0.1 + "s");
+        });
+        rev.forEach(function (el) {
+          el.classList.add("reveal");
+        });
+        if ("IntersectionObserver" in window) {
+          var io = new IntersectionObserver(
+            function (entries) {
+              entries.forEach(function (e) {
+                if (e.isIntersecting) {
+                  e.target.classList.add("in");
+                  io.unobserve(e.target);
+                }
+              });
+            },
+            { threshold: 0.12 },
+          );
+          rev.forEach(function (el) {
+            io.observe(el);
+          });
+        } else {
+          rev.forEach(function (el) {
+            el.classList.add("in");
+          });
+        }
+
+        // Endless logo strip: duplicate the logos once so the loop has no gap
+        var strip = document.querySelector(".logos");
+        if (strip && !reduce) {
+          Array.prototype.slice.call(strip.children).forEach(function (img) {
+            var c = img.cloneNode(true);
+            c.setAttribute("aria-hidden", "true");
+            strip.appendChild(c);
+          });
+        }
+
+        // Run the sample once on load so the hero feels alive
+        setTimeout(
+          function () {
+            if (!run.disabled) run.click();
+          },
+          reduce ? 0 : 1400,
+        );
+        // Animated backdrop: glowing sparks drift upward, link up when close,
+        // and are pushed away by the cursor.
+        var cv = $("bgfx"),
+          cx = cv && cv.getContext && cv.getContext("2d");
+        if (cx) {
+          var dpr = Math.min(window.devicePixelRatio || 1, 2),
+            W = 0,
+            H = 0,
+            ps = [];
+          var mouse = { x: -9999, y: -9999 };
+          var COLORS = ["255,102,0", "255,133,51", "255,170,90"];
+          function size() {
+            W = window.innerWidth;
+            H = window.innerHeight;
+            cv.width = W * dpr;
+            cv.height = H * dpr;
+            cx.setTransform(dpr, 0, 0, dpr, 0, 0);
+            var n = Math.max(30, Math.min(90, Math.round((W * H) / 16000)));
+            ps = [];
+            for (var i = 0; i < n; i++) {
+              ps.push({
+                x: Math.random() * W,
+                y: Math.random() * H,
+                vx: (Math.random() - 0.5) * 0.25,
+                vy: -(0.15 + Math.random() * 0.55),
+                r: 0.8 + Math.random() * 2.2,
+                a: 0.35 + Math.random() * 0.65,
+                c: COLORS[(Math.random() * COLORS.length) | 0],
+              });
+            }
+          }
+          function frame() {
+            cx.clearRect(0, 0, W, H);
+            cx.globalCompositeOperation = "lighter";
+            for (var i = 0; i < ps.length; i++) {
+              var p = ps[i];
+              if (!reduce) {
+                var dx = p.x - mouse.x,
+                  dy = p.y - mouse.y,
+                  d2 = dx * dx + dy * dy;
+                if (d2 < 22500 && d2 > 0) {
+                  // push away from cursor (150px)
+                  var d = Math.sqrt(d2),
+                    f = ((150 - d) / 150) * 1.4;
+                  p.x += (dx / d) * f;
+                  p.y += (dy / d) * f;
+                }
+                p.x += p.vx;
+                p.y += p.vy;
+                if (p.y < -10) {
+                  p.y = H + 10;
+                  p.x = Math.random() * W;
+                }
+                if (p.x < -10) p.x = W + 10;
+                else if (p.x > W + 10) p.x = -10;
+              }
+              cx.shadowColor = "rgba(" + p.c + ",.9)";
+              cx.shadowBlur = 14;
+              cx.fillStyle = "rgba(" + p.c + "," + p.a + ")";
+              cx.beginPath();
+              cx.arc(p.x, p.y, p.r, 0, 6.2832);
+              cx.fill();
+            }
+            cx.shadowBlur = 0;
+            for (var a = 0; a < ps.length; a++) {
+              for (var b = a + 1; b < ps.length; b++) {
+                var lx = ps[a].x - ps[b].x,
+                  ly = ps[a].y - ps[b].y,
+                  dist = lx * lx + ly * ly;
+                if (dist < 12100) {
+                  // link particles under 110px apart
+                  cx.strokeStyle =
+                    "rgba(255,120,30," + 0.22 * (1 - dist / 12100) + ")";
+                  cx.lineWidth = 1;
+                  cx.beginPath();
+                  cx.moveTo(ps[a].x, ps[a].y);
+                  cx.lineTo(ps[b].x, ps[b].y);
+                  cx.stroke();
+                }
+              }
+              var mx = ps[a].x - mouse.x,
+                my = ps[a].y - mouse.y,
+                md = mx * mx + my * my;
+              if (md < 32400) {
+                // link to cursor under 180px
+                cx.strokeStyle =
+                  "rgba(255,150,60," + 0.5 * (1 - md / 32400) + ")";
+                cx.beginPath();
+                cx.moveTo(ps[a].x, ps[a].y);
+                cx.lineTo(mouse.x, mouse.y);
+                cx.stroke();
+              }
+            }
+            cx.globalCompositeOperation = "source-over";
+            if (!reduce) requestAnimationFrame(frame);
+          }
+          size();
+          window.addEventListener("resize", function () {
+            size();
+            if (reduce) frame();
+          });
+          window.addEventListener(
+            "pointermove",
+            function (e) {
+              mouse.x = e.clientX;
+              mouse.y = e.clientY;
+            },
+            { passive: true },
+          );
+          window.addEventListener("pointerleave", function () {
+            mouse.x = mouse.y = -9999;
+          });
+          frame();
+        }
+      })();
+    </script>
+  </body>
+</html>
