@@ -7338,6 +7338,16 @@
 @media (prefers-reduced-motion:reduce){.whatsapp_float::before{animation:none}}
 </style>
 <style>
+/* Mobile: stop sideways overflow (removes the black strip next to the WhatsApp icon) */
+#Watchdemo{overflow-x:hidden;overflow-x:clip}
+@media (max-width:400px){
+  #growthCard{padding-left:.8rem!important;padding-right:.8rem!important}
+  #cols,#labs{grid-template-columns:repeat(5,minmax(0,1fr))!important;gap:.35rem!important}
+  #labs{font-size:.66rem!important;overflow-wrap:anywhere}
+  #labs b{font-size:.74rem!important}
+}
+</style>
+<style>
 .footer .footer-logo-img{display:block;width:100%;max-width:190px;height:auto}
 </style>
 <style>
